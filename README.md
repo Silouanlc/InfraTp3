@@ -90,7 +90,7 @@ This node joined a swarm as a worker.
 
 vos 3 machines doivent être des managers Swarm
 
-Join as manager 
+Join as manager
 VM2 :
 ~~~
 [vagrant@vm2 ~]$ sudo docker swarm leave
@@ -106,6 +106,18 @@ Node left the swarm.
 [vagrant@vm3 ~]$ sudo docker swarm join --token SWMTKN-1-2snf3qrfdi8da64rx9ikq85r1dxj8mg71bcxe7dxzakueqjd6f-3a5n7sy6jixi3zwlfi1qzecdy 192.168.100.10:2377
 This node joined a swarm as a manager.
 ~~~
+docker node ls :
+~~~
+[vagrant@vm2 ~]$ sudo docker node ls 
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+zchp0q4qizzhe47tpjoz327tn     vm1                 Ready               Active              Leader              19.03.6
+rl531awlz590c4va3xiz34zi3 *   vm2                 Ready               Active              Reachable           19.03.6
+tn9aafj253xjmnvzkep66e66l     vm2                 Down                Active                                  19.03.6
+17u1zgiptdz76hfxv6mhjgej2     vm3                 Ready               Active              Reachable           19.03.6
+n8du4ks16gthfiix24gn1lqso     vm3                 Down                Active                                  19.03.6
 
+~~~
+### 2. Une première application orchestrée
 
+🌞 "swarmiser" l'application Python du TP1
 
