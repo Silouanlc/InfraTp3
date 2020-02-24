@@ -1,5 +1,7 @@
 # TP3 Service Orchestration & Cloud-native environment
 
+
+VagrantFile :
 ~~~
 $script = <<-SCRIPT
 echo I am provisioning...
@@ -75,14 +77,35 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 ~~~
 
 
-docker swarm init pour créer le swarm
 
-utilisez le --advertise-addr pour préciser l'adresse dans le LAN
+docker swarm join pour qu'un noeud rejoigne un swarm existant :
+~~~
+[vagrant@vm2 ~]$ sudo docker swarm join --token SWMTKN-1-2snf3qrfdi8da64rx9ikq85r1dxj8mg71bcxe7dxzakueqjd6f-7drmd9rhi58cv78df4cqo73yb 192.168.100.10:2377
+This node joined a swarm as a worker.
+~~~
+~~~
+[vagrant@vm3 ~]$ sudo docker swarm join --token SWMTKN-1-2snf3qrfdi8da64rx9ikq85r1dxj8mg71bcxe7dxzakueqjd6f-7drmd9rhi58cv78df4cqo73yb 192.168.100.10:2377
+This node joined a swarm as a worker.
+~~~
 
-
-
-docker swarm join pour qu'un noeud rejoigne un swarm existant
 vos 3 machines doivent être des managers Swarm
+
+Join as manager 
+VM2 :
+~~~
+[vagrant@vm2 ~]$ sudo docker swarm leave
+Node left the swarm.
+[vagrant@vm2 ~]$ sudo docker swarm join --token SWMTKN-1-2snf3qrfdi8da64rx9ikq85r1dxj8mg71bcxe7dxzakueqjd6f-3a5n7sy6jixi3zwlfi1qzecdy 192.168.100.10:2377
+This node joined a swarm as a manager.
+~~~
+
+VM3 :
+~~~
+[vagrant@vm3 ~]$ sudo docker swarm leave
+Node left the swarm.
+[vagrant@vm3 ~]$ sudo docker swarm join --token SWMTKN-1-2snf3qrfdi8da64rx9ikq85r1dxj8mg71bcxe7dxzakueqjd6f-3a5n7sy6jixi3zwlfi1qzecdy 192.168.100.10:2377
+This node joined a swarm as a manager.
+~~~
 
 
 
